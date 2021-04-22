@@ -57,6 +57,34 @@ public:
         }
         return root;
     }
+//461 hamming distance
+    int hammingDistance(int x, int y) {
+        int t =x^y;
+        int sum=0;
+        while(t){
+            t=t&(t-1);
+            sum++;
+        }
+        return sum;
+    }
+//judge route circle
+    bool judgeCircle(string moves) {
+        int rl=0;//right and left move
+        int ud=0;//up and down move
+        //right=1,left=-1,up=1.down=-1
+        for(int i=0;i<moves.size();i++){
+            if(moves[i]=='R')
+                rl+=1;
+            if(moves[i]=='L')
+                rl+=-1;
+            if(moves[i]=='U')
+                ud+=1;
+            if(moves[i]=='D')
+                ud+=-1;
+        }
+        return (!rl)&&(!ud);
+    }
+
 };
 
 
