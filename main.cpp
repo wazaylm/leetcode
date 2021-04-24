@@ -98,6 +98,51 @@ public:
         root->right=mergeTrees(t1->right,t2->right);
         return root;
     }
+
+    //537. Complex Number Multiplication
+    string complexNumberMultiply(string a, string b) {
+        int a1,a2,b1,b2;
+        int r1,r2;
+        string res;
+        a1=stoi(a.substr(0,a.find('+')));
+        a2=stoi(a.substr(a.find('+')+1,a.find('i')));
+
+        b1=stoi(b.substr(0,b.find('+')));
+        b2=stoi(b.substr(b.find('+')+1,b.find('i')));
+
+        r1=a1*b1-a2*b2;
+        r2=a1*b2+a2*b1;
+
+        res=to_string(r1)+'+'+to_string(r2)+'i';
+        return res;
+
+    }
+
+    //419. Battleships in a Board
+    int countBattleships(vector<vector<char>>& board) {
+        int res=0;
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[i].size();j++){
+                if(board[i][j]=='X'){
+                    if(i==0){
+                        if(j==0) res++;
+                        else if(board[i][j-1]=='.')
+                            res++;
+                    } else{
+                        if(j==0){
+                            if(board[i-1][j]=='.') res++;
+                        } else {
+                            if(board[i-1][j]=='.'&&board[i][j-1]=='.')
+                                res++;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    
 };
 
 
