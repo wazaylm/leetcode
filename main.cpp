@@ -99,7 +99,7 @@ public:
         return root;
     }
 
-<<<<<<< HEAD
+
     //561. Array Partition I
     int arrayPairSum(vector<int>& nums) {
         int res=0;
@@ -109,35 +109,7 @@ public:
         }
         return res;
     }
-    //537. Complex Number Multiplication
-    string complexNumberMultiply(string a, string b) {
-        string res;
-        vector<int> A,B;//分别存储a,b中的实数和虚数部分
-        A.push_back(stoi(a.substr(0,a.find('+'))));
-        if(a.find('-')!=string::npos){
-            int t=stoi(a.substr(a.find('-'),a.find('i')));
-            A.push_back(t);
-        }
-        else
-            A.push_back(stoi(a.substr(a.find('+'),a.find('i'))));
 
-        B.push_back(stoi(b.substr(0,b.find('+'))));
-        if(b.find('-')!=string::npos){
-            int t=stoi(b.substr(b.find('-'),b.find('i')));
-            B.push_back(t);
-        }
-        else
-            B.push_back(stoi(b.substr(b.find('+'),b.find('i'))));
-
-        int t1,t2;
-        t1=A[1]*B[1]-A[0]*B[0];//实数部分
-        t2=A[0]*B[1]+A[1]*B[0];//虚数部分
-
-        res=res+to_string(t1)+'+'+to_string(t2)+'i';
-        return res;
-    }
-
-=======
     //537. Complex Number Multiplication
     string complexNumberMultiply(string a, string b) {
         int a1,a2,b1,b2;
@@ -181,22 +153,34 @@ public:
         return res;
     }
 
-    
->>>>>>> b4434ab384689ada89b4b130021a641102045bcf
+    vector<int> countBits(int num) {
+        vector<int> res;
+        int flag=0;
+        int mul=1;
+        for (int i = 0; i <=num ; ++i) {
+            if(i==0)
+                res.push_back(0);
+            else{
+            int t=i&(i-1);
+            if(t==0){
+                flag=i;
+                res.push_back(1);
+            } else{
+                res.push_back(res[i-flag]+1);
+            }
+            }
+        }
+        return res;
+    }
+
 };
 
 
 int main() {
-    string a,b;
-    cin>>a;
-    cin>>b;
-    cout<<stoi(a)<<" "<<stoi(b)<<endl;
-    Solution s;
-<<<<<<< HEAD
-    //cout<<s.complexNumberMultiply(a,b)<<endl;
-=======
-    cout<<s.convertToTitle(n)<<endl;
-
->>>>>>> b4434ab384689ada89b4b130021a641102045bcf
+    int t;
+//    cin>>t;
+//    Solution s;
+//    s.countBits(t);
+    cout<<(2&(2-1))<<endl;
     return 0;
 }
