@@ -173,14 +173,41 @@ public:
         return res;
     }
 
+    //476. Number Complement
+    int findComplement(int num) {
+        int d=num&(num-1);
+        int t;
+        if(d==0) return num-1;
+        else{
+            while(d){
+                t=d;
+                d=d&(d-1);
+            }
+            t=t|(t-1);
+            return (~num)&t;
+        }
+    }
+//    //476. Number Complement的第二种解法
+    int findComplement2(int num) {
+        int r,s=0,t=0;
+        while(num){
+            r = num % 2;
+            num /= 2;
+            s += pow(2,t) * (1-r);
+            t++;
+        }
+        return s;
+    }
+
+
 };
 
 
 int main() {
     int t;
-//    cin>>t;
-//    Solution s;
-//    s.countBits(t);
-    cout<<(2&(2-1))<<endl;
+    cin>>t;
+    Solution s;
+    cout<<s.findComplement(t);
+
     return 0;
 }
