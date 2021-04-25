@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <string.h>
 #include "treenode.h"
 #include <algorithm>
@@ -99,58 +98,52 @@ public:
         return root;
     }
 
-    //537. Complex Number Multiplication
-    string complexNumberMultiply(string a, string b) {
-        int a1,a2,b1,b2;
-        int r1,r2;
-        string res;
-        a1=stoi(a.substr(0,a.find('+')));
-        a2=stoi(a.substr(a.find('+')+1,a.find('i')));
-
-        b1=stoi(b.substr(0,b.find('+')));
-        b2=stoi(b.substr(b.find('+')+1,b.find('i')));
-
-        r1=a1*b1-a2*b2;
-        r2=a1*b2+a2*b1;
-
-        res=to_string(r1)+'+'+to_string(r2)+'i';
-        return res;
-
-    }
-
-    //419. Battleships in a Board
-    int countBattleships(vector<vector<char>>& board) {
+    //561. Array Partition I
+    int arrayPairSum(vector<int>& nums) {
         int res=0;
-        for(int i=0;i<board.size();i++){
-            for(int j=0;j<board[i].size();j++){
-                if(board[i][j]=='X'){
-                    if(i==0){
-                        if(j==0) res++;
-                        else if(board[i][j-1]=='.')
-                            res++;
-                    } else{
-                        if(j==0){
-                            if(board[i-1][j]=='.') res++;
-                        } else {
-                            if(board[i-1][j]=='.'&&board[i][j-1]=='.')
-                                res++;
-                        }
-                    }
-                }
-            }
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i+=2){
+            res+=nums[i];
         }
         return res;
     }
+    //537. Complex Number Multiplication
+    string complexNumberMultiply(string a, string b) {
+        string res;
+        vector<int> A,B;//分别存储a,b中的实数和虚数部分
+        A.push_back(stoi(a.substr(0,a.find('+'))));
+        if(a.find('-')!=string::npos){
+            int t=stoi(a.substr(a.find('-'),a.find('i')));
+            A.push_back(t);
+        }
+        else
+            A.push_back(stoi(a.substr(a.find('+'),a.find('i'))));
 
-    
+        B.push_back(stoi(b.substr(0,b.find('+'))));
+        if(b.find('-')!=string::npos){
+            int t=stoi(b.substr(b.find('-'),b.find('i')));
+            B.push_back(t);
+        }
+        else
+            B.push_back(stoi(b.substr(b.find('+'),b.find('i'))));
+
+        int t1,t2;
+        t1=A[1]*B[1]-A[0]*B[0];//实数部分
+        t2=A[0]*B[1]+A[1]*B[0];//虚数部分
+
+        res=res+to_string(t1)+'+'+to_string(t2)+'i';
+        return res;
+    }
+
 };
 
 
 int main() {
-    int n;
-    cin>>n;
+    string a,b;
+    cin>>a;
+    cin>>b;
+    cout<<stoi(a)<<" "<<stoi(b)<<endl;
     Solution s;
-    cout<<s.convertToTitle(n)<<endl;
-
+    //cout<<s.complexNumberMultiply(a,b)<<endl;
     return 0;
 }
