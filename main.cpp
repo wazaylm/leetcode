@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <string.h>
 #include "treenode.h"
 #include <algorithm>
@@ -98,6 +99,7 @@ public:
         return root;
     }
 
+<<<<<<< HEAD
     //561. Array Partition I
     int arrayPairSum(vector<int>& nums) {
         int res=0;
@@ -135,6 +137,52 @@ public:
         return res;
     }
 
+=======
+    //537. Complex Number Multiplication
+    string complexNumberMultiply(string a, string b) {
+        int a1,a2,b1,b2;
+        int r1,r2;
+        string res;
+        a1=stoi(a.substr(0,a.find('+')));
+        a2=stoi(a.substr(a.find('+')+1,a.find('i')));
+
+        b1=stoi(b.substr(0,b.find('+')));
+        b2=stoi(b.substr(b.find('+')+1,b.find('i')));
+
+        r1=a1*b1-a2*b2;
+        r2=a1*b2+a2*b1;
+
+        res=to_string(r1)+'+'+to_string(r2)+'i';
+        return res;
+
+    }
+
+    //419. Battleships in a Board
+    int countBattleships(vector<vector<char>>& board) {
+        int res=0;
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[i].size();j++){
+                if(board[i][j]=='X'){
+                    if(i==0){
+                        if(j==0) res++;
+                        else if(board[i][j-1]=='.')
+                            res++;
+                    } else{
+                        if(j==0){
+                            if(board[i-1][j]=='.') res++;
+                        } else {
+                            if(board[i-1][j]=='.'&&board[i][j-1]=='.')
+                                res++;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    
+>>>>>>> b4434ab384689ada89b4b130021a641102045bcf
 };
 
 
@@ -144,6 +192,11 @@ int main() {
     cin>>b;
     cout<<stoi(a)<<" "<<stoi(b)<<endl;
     Solution s;
+<<<<<<< HEAD
     //cout<<s.complexNumberMultiply(a,b)<<endl;
+=======
+    cout<<s.convertToTitle(n)<<endl;
+
+>>>>>>> b4434ab384689ada89b4b130021a641102045bcf
     return 0;
 }
