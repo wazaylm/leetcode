@@ -188,17 +188,30 @@ public:
         }
     }
 //    //476. Number Complement的第二种解法
-    int findComplement2(int num) {
-        int r,s=0,t=0;
-        while(num){
-            r = num % 2;
-            num /= 2;
-            s += pow(2,t) * (1-r);
-            t++;
-        }
-        return s;
-    }
+//    int findComplement2(int num) {
+//        int r,s=0,t=0;
+//        while(num){
+//            r = num % 2;
+//            num /= 2;
+//            s += pow(2,t) * (1-r);
+//            t++;
+//        }
+//        return s;
+//    }
 
+    string reverseWords(string s) {
+        string res;
+        while(s.find(' ')!=string::npos){
+            string temp=s.substr(0,s.find(' '));
+            s.erase(0,s.find(' ')+1);
+            reverse(temp.begin(),temp.end());
+            res+=temp;
+            res.push_back(' ');
+        }
+        reverse(s.begin(),s.end());
+        res+=s;
+        return res;
+    }
 
 };
 
